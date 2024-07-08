@@ -8,6 +8,10 @@ const todosSlice = createSlice({
     addTodo: (state, action) => {
       state.push({ id: Date.now(), text: action.payload, completed: false });
     },
+    removeTodo: (state, action) => {
+        //state.push({ id: Date.now(), text: action.payload, completed: false });
+        return state.filter(todo => todo.id !== action.payload);
+      },
     toggleTodo: (state, action) => {
       const todo = state.find((todo) => todo.id === action.payload);
       if (todo) {
@@ -17,5 +21,5 @@ const todosSlice = createSlice({
   },
 });
 
-export const { addTodo, toggleTodo } = todosSlice.actions;
+export const { addTodo, removeTodo, toggleTodo } = todosSlice.actions;
 export default todosSlice.reducer;
